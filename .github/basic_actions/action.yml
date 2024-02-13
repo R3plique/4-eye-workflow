@@ -1,0 +1,14 @@
+name: 'Setup basics'
+runs:
+  using: "composite"
+  steps:
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        sudo apt install -y curl build-essential git
+        git clone --depth 1 --branch main https://github.com/tgenv/tgenv.git ~/.tgenv
+        sudo ln -sf ~/.tgenv/bin/* /usr/local/bin
+        git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
+        sudo ln -sf ~/.tfenv/bin/* /usr/local/bin
+        tfenv --version
+        tgenv --version

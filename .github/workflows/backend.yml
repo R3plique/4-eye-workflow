@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Git clone the repository
         uses: actions/checkout@v3
+      - name: Basic Setup
+        uses: ./.github/basic_actions
       - name: Apply Infrastructure
         working-directory: .ops/environments/dev
         run: |
