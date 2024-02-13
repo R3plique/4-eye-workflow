@@ -1,0 +1,25 @@
+name: 4-Eye
+on:
+  push:
+    branches:
+      - main
+jobs:
+  dummy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+
+  # 4-eye-principle
+  deployment:
+    runs-on: 'ubuntu-latest'
+    needs: dummy
+    environment: 'prod'
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: Apply Infrastructure
+        working-directory: .ops/environments/dev
+        run: |
+          terragrunt init 
+          terragrunt apply -auto-approve
